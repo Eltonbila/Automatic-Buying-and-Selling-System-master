@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar cartão de crédito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .background-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('../img/pex.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+    background-color: rgba(255, 255, 255, 0.6); /* Cor branca com 50% de transparência */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(10, 10, 15, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 40px 10px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .input-group input::placeholder {
+            color: #aaa;
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .input-group i.fa-calendar-alt {
+            right: 14px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .row .col-md-6 {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .row .col-md-6:last-child {
+            margin-right: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <div class="container">
+       <a href="loja.html"> <button class="back-btn" >Voltar</button></a>
+           
+        <h1>Adicionar cartão de crédito</h1>
+
+        <form id="cardForm" action="#" method="post">
+            <div class="input-group">
+                <label for="nomeCartao">Nome no cartão:</label>
+                <input type="text" class="form-control" id="nomeCartao" name="nomeCartao" placeholder="Nome no cartão" required>
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="input-group">
+                <label for="numeroCartao">Número do cartão:</label>
+                <input type="text" class="form-control" id="numeroCartao" name="numeroCartao" placeholder="Número do cartão" required>
+                <i class="fas fa-credit-card"></i>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label for="dataValidade">Data de validade:</label>
+                        <input type="text" class="form-control" id="dataValidade" name="dataValidade" placeholder="MM/AAAA" pattern="\d{2}/\d{4}" required>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="valorGasto">Quanto deseja gastar:</label>
+                <input type="number" class="form-control" id="valorGasto" name="valorGasto" placeholder="Quanto deseja gastar" required>
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Adicionar cartão</button>
+       
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cardForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const nomeCartao = document.getElementById('nomeCartao').value;
+                const valorGasto = document.getElementById('valorGasto').value;        
+                localStorage.setItem('cartaoNome', nomeCartao);
+                localStorage.setItem('cartaoSaldo', valorGasto);
+                
+                window.location.href = 'loja.html'; // Redireciona para a página inicial
+            });
+        });
+    </script>
+</body>
+</html>
